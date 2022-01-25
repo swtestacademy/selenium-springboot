@@ -1,5 +1,6 @@
 package com.swtestacademy.springbootselenium.utils;
 
+import com.swtestacademy.springbootselenium.annotations.LazyComponent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -8,12 +9,9 @@ import org.openqa.selenium.TakesScreenshot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
-@Lazy
-@Service
+@LazyComponent
 public class ScreenshotUtil {
     @Autowired
     private ApplicationContext ctx;
