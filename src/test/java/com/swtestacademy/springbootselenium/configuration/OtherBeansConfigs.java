@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 
 @LazyConfiguration
-public class JsExecutorConfig {
+public class OtherBeansConfigs {
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public JavascriptExecutor javascriptExecutor(WebDriver driver) {

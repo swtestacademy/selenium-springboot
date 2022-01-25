@@ -2,6 +2,7 @@ package com.swtestacademy.springbootselenium.steps;
 
 import com.swtestacademy.springbootselenium.annotations.LazyAutowired;
 import com.swtestacademy.springbootselenium.annotations.LazyComponent;
+import com.swtestacademy.springbootselenium.annotations.TakeScreenshot;
 import com.swtestacademy.springbootselenium.pages.HomePage;
 import com.swtestacademy.springbootselenium.pages.LoginPage;
 
@@ -32,12 +33,14 @@ public class LoginSteps {
         return this;
     }
 
+    @TakeScreenshot("thenIVerifyLogEntryFailMessage")
     public LoginSteps thenIVerifyLogEntryFailMessage() {
         loginPage
             .verifyLogEntryFailMessage();
         return this;
     }
 
+    @TakeScreenshot("thenIVerifyPasswordErrorMessage")
     public LoginSteps thenIVerifyPasswordErrorMessage(String expected) {
         loginPage
             .verifyPasswordErrorMessage(expected);

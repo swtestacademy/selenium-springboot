@@ -2,12 +2,14 @@ package com.swtestacademy.springbootselenium.tests;
 
 import com.swtestacademy.springbootselenium.annotations.LazyAutowired;
 import com.swtestacademy.springbootselenium.annotations.SeleniumTest;
+import lombok.Getter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.springframework.context.ApplicationContext;
 
 @SeleniumTest
+@Getter
 public class BaseTest {
     @BeforeEach
     public void setup() {

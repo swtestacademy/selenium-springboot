@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 @LazyComponent
-public class ChromeOps {
+public class ChromeOpsUtil {
     public static ChromeOptions getChromeOptions() {
         DesiredCapabilities caps = new DesiredCapabilities();
         LoggingPreferences logPrefs = new LoggingPreferences();
