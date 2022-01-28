@@ -1,5 +1,6 @@
 package com.swtestacademy.springbootselenium.steps;
 
+import com.swtestacademy.springbootselenium.annotations.ElapsedTime;
 import com.swtestacademy.springbootselenium.annotations.LazyAutowired;
 import com.swtestacademy.springbootselenium.annotations.LazyComponent;
 import com.swtestacademy.springbootselenium.annotations.TakeScreenshot;
@@ -21,6 +22,7 @@ public class LoginSteps {
         return this;
     }
 
+    @ElapsedTime
     public LoginSteps whenILogin(String userName, String password) {
         loginPage
             .login(userName, password);
@@ -33,14 +35,14 @@ public class LoginSteps {
         return this;
     }
 
-    @TakeScreenshot("thenIVerifyLogEntryFailMessage")
+    @TakeScreenshot
     public LoginSteps thenIVerifyLogEntryFailMessage() {
         loginPage
             .verifyLogEntryFailMessage();
         return this;
     }
 
-    @TakeScreenshot("thenIVerifyPasswordErrorMessage")
+    @TakeScreenshot
     public LoginSteps thenIVerifyPasswordErrorMessage(String expected) {
         loginPage
             .verifyPasswordErrorMessage(expected);

@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void emptyUserEmptyPassword() {
-        System.out.println("Driver of emptyUserEmptyPassword test: " + applicationContext
+        logger.info("Driver of emptyUserEmptyPassword test: " + applicationContext
             .getBean(WebDriver.class));
 
         loginSteps
