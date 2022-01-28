@@ -15,7 +15,6 @@ public class ChromeOpsUtil {
         LoggingPreferences logPrefs = new LoggingPreferences();
         logPrefs.enable(LogType.BROWSER, Level.ALL);
         caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
-        ChromeOptions options = new ChromeOptions();
-        return options.merge(caps);
+        return new ChromeOptions().merge(caps);
     }
 }
