@@ -1,4 +1,4 @@
-package com.swtestacademy.springbootselenium.aspects;
+package com.swtestacademy.springbootselenium.aop;
 
 import com.swtestacademy.springbootselenium.annotations.TakeScreenshot;
 import com.swtestacademy.springbootselenium.utils.ScreenshotUtil;
