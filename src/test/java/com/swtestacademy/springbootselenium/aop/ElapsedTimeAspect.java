@@ -16,7 +16,7 @@ public class ElapsedTimeAspect {
         long startTime = System.currentTimeMillis();
         Object obj = proceedingJoinPoint.proceed();
         long timeTaken = System.currentTimeMillis() - startTime;
-        log.info("Elapsed time of {} is {}", proceedingJoinPoint, timeTaken + " milliseconds.");
+        log.info("Elapsed time of {} is {}", proceedingJoinPoint.getSignature().getName(), timeTaken + " ms.");
         return obj;
     }
 }
