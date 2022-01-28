@@ -1,5 +1,6 @@
 package com.swtestacademy.springbootselenium.annotations;
 
+import com.swtestacademy.springbootselenium.SpringSeleniumApplication;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -11,6 +12,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @ExtendWith(SpringExtension.class)
-@SpringBootTest()
+@SpringBootTest(classes = SpringSeleniumApplication.class)
 public @interface SeleniumTest {
 }
