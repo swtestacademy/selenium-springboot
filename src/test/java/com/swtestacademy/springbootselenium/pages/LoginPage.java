@@ -13,13 +13,14 @@ import org.openqa.selenium.support.How;
 @LazyComponent
 public class LoginPage extends BasePage {
 
-    //*********Web Elements by using Page Factory*********
+    //********* Web Elements by using Page Factory *********
     @FindBy(how = How.ID, using = "email")
     public WebElement userName;
 
     @FindBy(how = How.ID, using = "password")
     public WebElement password;
 
+    //********* Web Elements by using By Class *********
     By loginButtonBy          = By.id("loginButton");
     By errorMessageUsernameBy = By.xpath("//*[@id=\"loginForm\"]/div[1]/div/div");
     By errorMessagePasswordBy = By.xpath("//*[@id=\"loginForm\"]/div[2]/div/div");
