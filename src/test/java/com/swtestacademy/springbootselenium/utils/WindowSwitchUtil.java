@@ -10,7 +10,7 @@ public class WindowSwitchUtil {
     @Autowired
     private ApplicationContext ctx;
 
-    public void switchByTitle(final String title) {
+    public void switchByWindowTitle(final String title) {
         WebDriver driver = this.ctx.getBean(WebDriver.class);
 
         driver
@@ -23,7 +23,7 @@ public class WindowSwitchUtil {
             .filter(t -> t.startsWith(title))
             .findFirst()
             .orElseThrow(() -> {
-                throw new RuntimeException("No such window available.");
+                throw new RuntimeException("There is no such window available.");
             });
     }
 

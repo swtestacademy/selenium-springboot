@@ -1,7 +1,9 @@
 package com.swtestacademy.springbootselenium.pages;
 
+import com.swtestacademy.springbootselenium.utils.LogUtil;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,17 +23,48 @@ public abstract class BasePage {
     @Autowired
     protected JavascriptExecutor javascriptExecutor;
 
+    @Autowired
+    protected LogUtil logUtil;
+
     @PostConstruct
-    private void init(){
+    private void init() {
         PageFactory.initElements(this.driver, this);
     }
 
     public abstract boolean isAt();
 
+    public <T> void waitElement(T elementAttr) {
+        if (elementAttr
+            .getClass()
+            .getName()
+            .contains("By")) {
+            wait.until(ExpectedConditions.presenceOfElementLocated((By) elementAttr));
+        } else {
+            wait.until(ExpectedConditions.visibilityOf((WebElement) elementAttr));
+        }
+    }
+
+    public <T> void waitElements(T elementAttr) {
+        if (elementAttr
+            .getClass()
+            .getName()
+            .contains("By")) {
+            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By) elementAttr));
+        } else {
+            wait.until(ExpectedConditions.visibilityOfAllElements((WebElement) elementAttr));
+        }
+    }
+
     //Click Method by using JAVA Generics (You can use both By or Web element)
     public <T> void click(T elementAttr) {
-        if (elementAttr.getClass().getName().contains("By")) {
-            driver.findElement((By) elementAttr).click();
+        waitElement(elementAttr);
+        if (elementAttr
+            .getClass()
+            .getName()
+            .contains("By")) {
+            driver
+                .findElement((By) elementAttr)
+                .click();
         } else {
             ((WebElement) elementAttr).click();
         }
@@ -41,29 +74,53 @@ public abstract class BasePage {
         javascriptExecutor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(by)));
     }
 
-    //Write Text by using JAVA Generics (You can use both By or Webelement)
+    //Write Text by using JAVA Generics (You can use both By or WebElement)
     public <T> void writeText(T elementAttr, String text) {
-        if (elementAttr.getClass().getName().contains("By")) {
-            driver.findElement((By) elementAttr).sendKeys(text);
+        waitElement(elementAttr);
+        if (elementAttr
+            .getClass()
+            .getName()
+            .contains("By")) {
+            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By) elementAttr));
+            driver
+                .findElement((By) elementAttr)
+                .sendKeys(text);
         } else {
+            wait.until(ExpectedConditions.visibilityOf((WebElement) elementAttr));
             ((WebElement) elementAttr).sendKeys(text);
         }
     }
 
-    //Read Text by using JAVA Generics (You can use both By or Webelement)
+    //Read Text by using JAVA Generics (You can use both By or WebElement)
     public <T> String readText(T elementAttr) {
-        if (elementAttr.getClass().getName().contains("By")) {
-            return driver.findElement((By) elementAttr).getText();
+        if (elementAttr
+            .getClass()
+            .getName()
+            .contains("By")) {
+            return driver
+                .findElement((By) elementAttr)
+                .getText();
         } else {
             return ((WebElement) elementAttr).getText();
         }
     }
 
+    @SneakyThrows
+    public <T> String readTextErrorMessage(T elementAttr) {
+        Thread.sleep(2000); //This needs to be improved.
+        return driver
+            .findElement((By) elementAttr)
+            .getText();
+    }
+
     //Close popup if exists
     public void handlePopup(By by) throws InterruptedException {
+        waitElements(by);
         List<WebElement> popup = driver.findElements(by);
         if (!popup.isEmpty()) {
-            popup.get(0).click();
+            popup
+                .get(0)
+                .click();
             Thread.sleep(200);
         }
     }

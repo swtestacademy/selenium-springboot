@@ -1,0 +1,69 @@
+#!/bin/bash
+
+function short_version() {
+    local __long_version=$1
+    local __version_split=( ${__long_version//./ } )
+    echo "${__version_split[0]}.${__version_split[1]}"
+}
+
+
+if [[ -z "$CONFIG_FILE" ]]; then
+FILENAME="/opt/selenium/config.toml"
+else
+FILENAME="$CONFIG_FILE"
+fi
+
+echo "[events]
+publish = \"tcp://${SE_EVENT_BUS_HOST}:${SE_EVENT_BUS_PUBLISH_PORT}\"
+subscribe = \"tcp://${SE_EVENT_BUS_HOST}:${SE_EVENT_BUS_SUBSCRIBE_PORT}\"
+" > "$FILENAME"
+
+if [[ -z "${SE_NODE_HOST}" ]] && [[ -z "${SE_NODE_PORT}" ]]; then
+  echo "Configuring server..."
+else
+  echo "[server]" >> "$FILENAME"
+fi
+
+if [[ -z "${SE_NODE_HOST}" ]]; then
+  echo "Setting up SE_NODE_HOST..."
+else
+  echo "host = \"${SE_NODE_HOST}\"" >> "$FILENAME"
+fi
+
+if [[ -z "${SE_NODE_PORT}" ]]; then
+  echo "Setting up SE_NODE_PORT..."
+else
+  echo "port = \"${SE_NODE_PORT}\"" >> "$FILENAME"
+fi
+
+echo "[node]" >> "$FILENAME"
+# String, Url where the Grid can be reached
+if [[ -z "${SE_NODE_GRID_URL}" ]]; then
+  echo "Setting up SE_NODE_GRID_URL..."
+else
+  echo "grid-url = \"${SE_NODE_GRID_URL}\"" >> "$FILENAME"
+fi
+echo "session-timeout = \"${SE_NODE_SESSION_TIMEOUT}\"" >> "$FILENAME"
+echo "override-max-sessions = ${SE_NODE_OVERRIDE_MAX_SESSIONS}" >> "$FILENAME"
+echo "detect-drivers = false" >> "$FILENAME"
+echo "max-sessions = ${SE_NODE_MAX_SESSIONS}
+" >> "$FILENAME"
+
+SE_NODE_BROWSER_NAME=$(cat /opt/selenium/browser_name)
+if [[ "${SE_NODE_BROWSER_NAME}" == "chrome" ]]; then
+    SE_NODE_BROWSER_VERSION=$(short_version $(google-chrome --version | awk '{print $3}'))
+elif [[ "${SE_NODE_BROWSER_NAME}" == "firefox" ]]; then
+    SE_NODE_BROWSER_VERSION=$(short_version $(firefox --version | awk '{print $3}'))
+elif [[ "${SE_NODE_BROWSER_NAME}" == "MicrosoftEdge" ]]; then
+    SE_NODE_BROWSER_VERSION=$(short_version $(microsoft-edge --version | awk '{print $3}'))
+fi
+
+SE_NODE_STEREOTYPE="{\"browserName\": \"${SE_NODE_BROWSER_NAME}\", \"browserVersion\": \"${SE_NODE_BROWSER_VERSION}\", \"platformName\": \"Linux\"}"
+echo "[[node.driver-configuration]]" >> "$FILENAME"
+echo "display-name = \"${SE_NODE_BROWSER_NAME}\"" >> "$FILENAME"
+echo "stereotype = '${SE_NODE_STEREOTYPE}'" >> "$FILENAME"
+echo "max-sessions = ${SE_NODE_MAX_SESSIONS}
+" >> "$FILENAME"
+
+
+

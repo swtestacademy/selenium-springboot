@@ -1,0 +1,44 @@
+version: 2
+updates:
+- package-ecosystem: docker
+  directory: "/StandaloneChrome"
+  schedule:
+    interval: daily
+    time: '08:00'
+  open-pull-requests-limit: 99
+- package-ecosystem: docker
+  directory: "/StandaloneFirefox"
+  schedule:
+    interval: daily
+    time: '08:00'
+  open-pull-requests-limit: 99
+- package-ecosystem: docker
+  directory: "/NodeFirefox"
+  schedule:
+    interval: daily
+    time: '08:00'
+  open-pull-requests-limit: 99
+- package-ecosystem: docker
+  directory: "/Hub"
+  schedule:
+    interval: daily
+    time: '08:00'
+  open-pull-requests-limit: 99
+- package-ecosystem: docker
+  directory: "/NodeBase"
+  schedule:
+    interval: daily
+    time: '08:00'
+  open-pull-requests-limit: 99
+- package-ecosystem: docker
+  directory: "/NodeChrome"
+  schedule:
+    interval: daily
+    time: '08:00'
+  open-pull-requests-limit: 99
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: daily
+    time: '08:00'
+  open-pull-requests-limit: 99

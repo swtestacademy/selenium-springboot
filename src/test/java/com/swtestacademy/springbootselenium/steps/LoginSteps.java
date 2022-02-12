@@ -6,9 +6,13 @@ import com.swtestacademy.springbootselenium.annotations.LazyComponent;
 import com.swtestacademy.springbootselenium.annotations.TakeScreenshot;
 import com.swtestacademy.springbootselenium.pages.HomePage;
 import com.swtestacademy.springbootselenium.pages.LoginPage;
+import org.springframework.beans.factory.annotation.Value;
 
 @LazyComponent
 public class LoginSteps {
+    @Value("${browser}")
+    private String browser;
+
     @LazyAutowired
     HomePage homePage;
 
@@ -37,8 +41,12 @@ public class LoginSteps {
 
     @TakeScreenshot
     public LoginSteps thenIVerifyLogEntryFailMessage() {
-        loginPage
-            .verifyLogEntryFailMessage();
+        if(!browser.equalsIgnoreCase("firefox")) {
+            loginPage
+                .verifyLogEntryFailMessage();
+        } else {
+            loginPage.verifyPasswordErrorMessageWithCss("E-posta adresiniz veya şifreniz hatalı");
+        }
         return this;
     }
 
@@ -46,6 +54,13 @@ public class LoginSteps {
     public LoginSteps thenIVerifyPasswordErrorMessage(String expected) {
         loginPage
             .verifyPasswordErrorMessage(expected);
+        return this;
+    }
+
+    @TakeScreenshot
+    public LoginSteps thenIVerifyPasswordErrorMessageWithCss(String expected) {
+        loginPage
+            .verifyPasswordErrorMessageWithCss(expected);
         return this;
     }
 }
