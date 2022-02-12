@@ -1,10 +1,8 @@
 package com.swtestacademy.springbootselenium.pages;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.swtestacademy.springbootselenium.annotations.LazyComponent;
-import com.swtestacademy.springbootselenium.utils.LogUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +10,6 @@ import org.openqa.selenium.support.How;
 
 @LazyComponent
 public class LoginPage extends BasePage {
-
     //********* Web Elements by using Page Factory *********
     @FindBy(how = How.ID, using = "email")
     public WebElement userName;
@@ -24,6 +21,7 @@ public class LoginPage extends BasePage {
     By loginButtonBy          = By.id("loginButton");
     By errorMessageUsernameBy = By.xpath("//*[@id=\"loginForm\"]/div[1]/div/div");
     By errorMessagePasswordBy = By.xpath("//*[@id=\"loginForm\"]/div[2]/div/div");
+    By errorMessagePasswordCssBy = By.cssSelector("div[data-errormessagefor='password'] > .errorText");
 
     //*********Page Methods*********
     public LoginPage login(String userName, String password) {
@@ -43,8 +41,13 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    public LoginPage verifyPasswordErrorMessageWithCss(String expectedText) {
+        assertEquals(expectedText, readTextErrorMessage(errorMessagePasswordCssBy));
+        return this;
+    }
+
     public LoginPage verifyLogEntryFailMessage() {
-        assertTrue(LogUtil.isLoginErrorLog(driver));
+        logUtil.isLoginErrorLog(driver);
         return this;
     }
 
