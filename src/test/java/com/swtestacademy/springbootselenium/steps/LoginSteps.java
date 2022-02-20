@@ -40,7 +40,7 @@ public class LoginSteps {
     }
 
     @TakeScreenshot
-    public LoginSteps thenIVerifyLogEntryFailMessage() {
+    public LoginSteps thenIVerifyInvalidLoginMessage() {
         if(!browser.equalsIgnoreCase("firefox")) {
             loginPage
                 .verifyLogEntryFailMessage();

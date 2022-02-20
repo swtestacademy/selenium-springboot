@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest {
         loginSteps
             .givenIAmAtLoginPage()
             .whenILogin("onur@swtestacademy.com", "11223344")
-            .thenIVerifyLogEntryFailMessage();
+            .thenIVerifyInvalidLoginMessage();
     }
 
     @Test
