@@ -1,6 +1,8 @@
 package com.swtestacademy.springbootselenium.pages;
 
 import com.swtestacademy.springbootselenium.annotations.LazyComponent;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -19,6 +21,8 @@ public class HomePage extends BasePage {
     @FindBy(how = How.CLASS_NAME, using = "btnSignIn")
     public WebElement signInButton;
 
+    By homePageLogo = By.cssSelector(".logo.home");
+
     //*********Page Methods*********
     //Go to Homepage
     public HomePage goToHomePage() {
@@ -35,5 +39,11 @@ public class HomePage extends BasePage {
     @Override
     public boolean isAt() {
         return this.wait.until((d) -> this.signInButton.isDisplayed());
+    }
+
+    public HomePage verifyThatIAmAtHomePage() {
+        Assertions.assertTrue(driver.findElement(homePageLogo).isDisplayed());
+        return this;
+
     }
 }
