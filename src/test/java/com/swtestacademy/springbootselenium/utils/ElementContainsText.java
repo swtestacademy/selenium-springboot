@@ -1,10 +1,11 @@
 package com.swtestacademy.springbootselenium.utils;
 
-import java.util.Objects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+
+import java.util.Objects;
 
 //Custom Expected Condition Class
 public class ElementContainsText implements ExpectedCondition<Boolean> {

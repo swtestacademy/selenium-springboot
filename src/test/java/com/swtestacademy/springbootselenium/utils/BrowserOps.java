@@ -1,13 +1,13 @@
 package com.swtestacademy.springbootselenium.utils;
 
 import com.swtestacademy.springbootselenium.annotations.LazyComponent;
-import java.util.logging.Level;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.CapabilityType;
+
+import java.util.logging.Level;
 
 @LazyComponent
 public class BrowserOps {
@@ -15,7 +15,9 @@ public class BrowserOps {
         ChromeOptions chromeOptions = new ChromeOptions();
         LoggingPreferences logPrefs = new LoggingPreferences();
         logPrefs.enable(LogType.BROWSER, Level.ALL);
-        chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+        logPrefs.enable(LogType.DRIVER, Level.ALL);
+
+        chromeOptions.setCapability("goog:loggingPrefs", logPrefs);
         return chromeOptions;
     }
 
@@ -30,7 +32,7 @@ public class BrowserOps {
 
         firefoxOptions
             .setProfile(firefoxProfile)
-            .setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+            .setCapability("moz:loggingPrefs", logPrefs);
         return firefoxOptions;
     }
 }

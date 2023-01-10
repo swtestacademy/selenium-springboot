@@ -1,8 +1,7 @@
 package com.swtestacademy.springbootselenium.pages;
 
 import com.swtestacademy.springbootselenium.utils.LogUtil;
-import java.util.List;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,6 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 public abstract class BasePage {
     @Autowired

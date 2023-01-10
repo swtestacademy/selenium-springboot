@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.4</version>
+        <version>3.0.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.swtestacademy</groupId>
@@ -16,15 +16,14 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <maven.surefire.version>3.0.0-M5</maven.surefire.version>
+        <maven.surefire.version>3.0.0-M7</maven.surefire.version>
         <java.version>17</java.version>
-        <selenium.version>4.1.1</selenium.version>
-        <webdrivermanager.version>5.0.3</webdrivermanager.version>
-        <junit.jupiter.version>5.8.2</junit.jupiter.version>
-        <junit.platform.version>1.8.2</junit.platform.version>
-        <testng.version>7.5</testng.version>
-        <lombok.version>1.18.22</lombok.version>
-        <cucumber.version>7.2.3</cucumber.version>
+        <selenium.version>4.7.2</selenium.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <junit.platform.version>1.9.1</junit.platform.version>
+        <testng.version>7.7.1</testng.version>
+        <lombok.version>1.18.24</lombok.version>
+        <cucumber.version>7.10.1</cucumber.version>
     </properties>
 
     <dependencies>
@@ -56,13 +55,6 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
-        </dependency>
-
-        <!--Webdriver Manager-->
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
         </dependency>
 
         <!--JUnit5-->
