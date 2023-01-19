@@ -16,11 +16,11 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <maven.surefire.version>3.0.0-M7</maven.surefire.version>
+        <maven.surefire.version>3.0.0-M8</maven.surefire.version>
         <java.version>17</java.version>
         <selenium.version>4.7.2</selenium.version>
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <junit.platform.version>1.9.1</junit.platform.version>
+        <junit.jupiter.version>5.9.2</junit.jupiter.version>
+        <junit.platform.version>1.9.2</junit.platform.version>
         <testng.version>7.7.1</testng.version>
         <lombok.version>1.18.24</lombok.version>
         <cucumber.version>7.10.1</cucumber.version>
