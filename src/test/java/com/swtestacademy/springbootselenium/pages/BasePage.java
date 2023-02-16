@@ -2,6 +2,7 @@ package com.swtestacademy.springbootselenium.pages;
 
 import com.swtestacademy.springbootselenium.utils.LogUtil;
 import jakarta.annotation.PostConstruct;
+import java.util.List;
 import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,8 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 public abstract class BasePage {
     @Autowired
@@ -108,7 +107,7 @@ public abstract class BasePage {
 
     @SneakyThrows
     public <T> String readTextErrorMessage(T elementAttr) {
-        Thread.sleep(2000); //This needs to be improved.
+        Thread.sleep(5000); //This needs to be improved.
         return driver
             .findElement((By) elementAttr)
             .getText();

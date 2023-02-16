@@ -41,12 +41,7 @@ public class LoginSteps {
 
     @TakeScreenshot
     public LoginSteps thenIVerifyInvalidLoginMessage() {
-        if(!browser.equalsIgnoreCase("firefox")) {
-            loginPage
-                .verifyLogEntryFailMessage();
-        } else {
-            loginPage.verifyPasswordErrorMessageWithCss("E-posta adresiniz veya şifreniz hatalı");
-        }
+        loginPage.verifyPasswordErrorMessageWithCss("E-posta adresiniz veya şifreniz hatalı");
         return this;
     }
 

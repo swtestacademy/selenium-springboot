@@ -18,7 +18,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <maven.surefire.version>3.0.0-M8</maven.surefire.version>
         <java.version>17</java.version>
-        <selenium.version>4.7.2</selenium.version>
+        <selenium.version>4.8.0</selenium.version>
         <junit.jupiter.version>5.9.2</junit.jupiter.version>
         <junit.platform.version>1.9.2</junit.platform.version>
         <testng.version>7.7.1</testng.version>
